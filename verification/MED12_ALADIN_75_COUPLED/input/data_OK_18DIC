@@ -1,0 +1,195 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ tRef=81*19.,
+ sRef=81*37., 
+# This is the background viscosity used total=viscah+viscleith
+# viscAh=10.E2,
+#--- viscA4=1.25E10,
+# viscA4=10.E4,
+# This is the background viscosity used on vorticity points
+# viscAhZ=1.E2,
+# viscA4Z=1.E2,
+#-- viscA4Z=1.25E10,
+# This is the background viscosity used on divergence points
+# viscAhD=1.E2,
+# viscA4D=1.E2,
+# viscAhd and viscahz are set to viscah if they are unset initially
+#--- viscA4D=1.25E10,
+#
+# This is a maximum gridscale Reynolds number limiter
+# ViscAhRemax=10,
+# ViscA4Remax=10,
+# This is a minimum autoscaling viscosity
+# prima di Natale viscA4Grid = 0.02,
+# viscA4Grid = 0.003,
+# ViscAhGridMin=.01,
+# ViscA4GridMin=.0001,
+# This is the standard Leith Viscosity, prop to grad(curl v_h)
+ viscC2leith=1.,
+# viscC4leith=1.5,
+# This is an additional Leith Viscosity, prop to grad(div.v_h)
+# It traps instabilities that have no signal in grad(curl v_h)
+ viscC2leithD=1.,
+# viscC4leithD=1.5,
+# This is harmonic Smagorinsky Coefficient
+# 0.2-0.9=value from 3-d turbulence theory; Smagorinsky (1993)
+# 2.2-4=stable oceanic values (Griffies and Hallberg, 2000)
+# 1.0 smag is approximately the same as 1.85 leith+leithd
+# viscC2Smag=1.0,
+# viscC4Smag=2.2,
+# This is the max Viscosity used, be it Smag or Leith, and it scales 
+# with grid size and timestep
+# viscAhGridMax=10.0,
+# viscA4GridMax=.01,
+# This uses the full grad(vort) and grad(div)
+ useFullLeith=.TRUE.,
+# This uses the Strain-Tension form for calculating viscous terms
+ useStrainTensionVisc=.FALSE.,
+# Vertical viscosity
+# viscAz=1.5E-4,
+ viscAz=1.5E-7,
+# useAreaViscLength=.TRUE.,
+ ivdc_kappa=1.E2,
+ no_slip_sides=.TRUE.,
+ no_slip_bottom=.TRUE.,
+# diffK4T=0.E1,
+# diffK4S=0.E1,
+ diffKhT=1.E2,
+ diffKhS=1.E2,
+ diffK4T=3.E9,
+ diffK4S=3.E9,
+#----> diffKhT=2.E-2,
+# diffKzT=1.E-5,
+#----> diffKhS=2.E-2,
+# diffKzS=1.E-5,
+ diffKrNrT=81*1.E-7,
+ diffKrNrS=81*1.E-7,
+ f0=0.8543851429E-4,
+ beta=0.E-11,
+ tAlpha=0.E-4,
+ sBeta =1.E-3,
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.TRUE.,
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+ eosType = 'JMD95Z',
+ staggerTimeStep = .TRUE.
+# tempAdvScheme = 33,
+# saltAdvScheme = 33,
+ tempAdvScheme = 80,
+ saltAdvScheme = 80,
+# eosType='LINEAR',
+ hFacMin=0.2,
+# turn on looped cells
+#--------------------
+# hFacMindr=30.,
+ vectorInvariantMomentum=.TRUE.,
+#-------------------
+ nonHydrostatic=.FALSE.,
+ readBinaryPrec=32,
+ useSingleCpuIO=.TRUE.,
+# bottomDragLinear=0.0025E0,
+# bottomDragQuadratic = 0.08,
+ bottomDragQuadratic = 0.02,
+ select_rStar = 2,
+ NonLinFreeSurf = 4,
+ exactConserv = .TRUE.,
+ useRealFreshWaterFlux = .TRUE.,
+ balanceEmPmR = .TRUE.,
+ hMixCriteria = -0.2,
+ allowFreezing =.TRUE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=300,
+ cg2dTargetResidual=1.E-13,
+ cg3dMaxIters=20,
+ cg3dTargetResidual=1.E-8,
+ &
+
+# Time stepping parameters
+ &PARM03
+ startTime  =  0,
+# startTime  =  -99,
+# startTime  =  1989396000.,
+ endTime = 3153600000.,
+#---------------------
+# niter0=-1,
+# niter0= 0,
+# nTimeSteps=159840000,
+#----------------------
+ deltaT=200.,
+ deltaTtracer= 200.0,
+ deltaTClock = 600.0,
+ abEps=0.01,
+ pChkptFreq=2592000.,
+# pChkptFreq=86400.,
+  pickupStrictlyMatch=.FALSE.,
+ chkptFreq=86400.0,
+# dumpFreq=86400.,
+# dumpFreq=200.,
+ dumpFreq=86400.0,
+# taveFreq=86400.0,
+ monitorFreq=86400.,
+# tauThetaClimRelax =  7200.,
+# 6 months restoring timescale for salinity
+#  TAUSaltClimRelax =   2592000.,
+#  TAUSaltClimRelax =   691200.,
+#  TAUSaltClimRelax =   0.,
+
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.FALSE.,
+ usingSphericalPolarGrid=.FALSE.,
+ usingCurvilinearGrid =.TRUE.,
+# horizGridFile=GRID.bin,
+# delX=1440*50.,
+# delXFile=DXG.bin,
+# delYFile=DYG.bin,
+# dYspacing=210*900.,
+
+
+  delz =   1.022484,  1.073928,  1.136748,  1.213456,
+           1.307116,  1.421466,  1.561064,  1.731467,
+           1.939444,  2.193239,  2.502884,  2.880577,
+           3.341138,  
+          3.977898,   4.391293,   4.607395,   5.064022,
+          5.326324,   5.832291,   6.147331,   6.709618,
+          7.084824,   7.711380,   8.155258,   8.855118,
+          9.377335,  10.160812,  10.772354,  11.651230,
+         12.364594,  13.352203,  14.181671,  15.293182,
+         16.254944,  17.507629,  18.620026,  20.033478,
+         21.317444,  22.913818,  24.393005,  26.197510,
+         27.898682,  29.939819,  31.893250,  34.203247,
+         36.443115,  39.058350,  41.623047,  44.584595,
+         47.517456,  50.871338,  54.221069,  58.018555,
+         61.839966,  66.138794,  70.492432,  75.356689,
+         80.310791,  85.811768,  91.440674,  97.657715,
+        104.043945, 111.063721, 118.298584, 126.215088,
+        134.397705, 143.314453, 152.551758, 162.579102,
+        172.986328, 184.243164, 195.941895, 208.553223,
+        221.671387, 235.768555, 250.437500, 266.153320,
+        282.509766, 299.977539, 318.152344, 337.506836,
+
+&
+
+# Input datasets
+ &PARM05
+ bathyFile='BATHY_MED10.bin',
+ hydrogSaltFile='init_sal_1958.bin',
+ hydrogThetaFile='init_temp_1958.bin',
+# hydrogSaltFile='init_sal.bin',
+# hydrogThetaFile='init_temp.bin',
+#  hydrogSaltFile='RBCS_sal.bin',
+# hydrogThetaFile='RBCS_temp.bin',
+#    uVelInitFile='RBCS_uvel.bin',
+#    vVelInitFile='RBCS_vvel.bin',
+#   pSurfInitFile='RBCS_eta.bin',
+ &

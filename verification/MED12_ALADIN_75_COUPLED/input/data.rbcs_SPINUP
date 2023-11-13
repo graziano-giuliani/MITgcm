@@ -1,0 +1,21 @@
+# ***************
+# RBCS Parameters
+# ***************
+ &RBCS_PARM01
+ useRBCsalt=.TRUE.,
+ useRBCtemp=.TRUE.,
+# tauRelaxT=2628000.,
+# tauRelaxS=2628000.,
+ tauRelaxT=172800.,
+ tauRelaxS=172800.,
+ relaxTFile='init_temp_month.bin',
+ relaxSFile='init_sal_month.bin',
+ rbcsForcingPeriod= 2628000.,
+ rbcsForcingCycle= 31536000.,
+ rbcsIniter = 0,
+# relaxMaskFile(1) ='relaxMaskRBCS_T.bin',
+# relaxMaskFile(2) ='relaxMaskRBCS_S.bin',
+ relaxMaskFile(1) ='relaxMaskRBCS_T_TOT.bin',
+ relaxMaskFile(2) ='relaxMaskRBCS_S_TOT.bin',
+ /
+

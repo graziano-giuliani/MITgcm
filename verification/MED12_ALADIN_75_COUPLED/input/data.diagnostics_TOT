@@ -1,0 +1,304 @@
+# Diagnostic Package Choices
+#-----------------
+# for each output-stream:
+#  filename(n) : prefix of the output file name (only 8.c long) for outp.stream n
+#  frequency(n):< 0 : write snap-shot output every |frequency| seconds
+#               > 0 : write time-average output every frequency seconds
+#  timePhase(n)     : write at time = timePhase + multiple of |frequency|
+#  levels(:,n) : list of levels to write to file (Notes: declared as REAL)
+#                 when this entry is missing, select all common levels of this list
+#  fields(:,n) : list of diagnostics fields (8.c) (see "available_diagnostics" file
+#                 for the list of all available diag. in this particular config)
+#  averagingFreq  :: frequency (in s) for periodic averaging interval
+#-----------------
+#      NAMELIST / DIAGNOSTICS_LIST /
+#     &     frequency, timePhase,
+#     &     averagingFreq, averagingPhase, repeatCycle,
+#     &     missing_value, missing_value_int,
+#     &     levels, fields, filename, fileflags,
+#     &     dumpAtLast, diag_mnc,
+#     &     diag_pickup_read,     diag_pickup_write,
+#     &     diag_pickup_read_mnc, diag_pickup_write_mnc
+
+#C--   per level statistics output:
+#      NAMELIST / DIAG_STATIS_PARMS /
+#     &     stat_freq, stat_phase, stat_region, stat_fields,
+#     &     stat_fname, diagSt_mnc,
+#     &     set_regMask, val_regMask,
+#     &     diagSt_regMaskFile, nSetRegMskFile
+#-------------------- 
+ &diagnostics_list
+  diag_mnc=.FALSE.,
+#  diag_pickup_read=.TRUE.,   
+#  diag_pickup_write=.TRUE.,
+#  diag_pickup_read_mnc=.TRUE.,
+#  diag_pickup_write_mnc=.TRUE.,
+#---------------------------
+
+
+#---------------------------
+#  VISCOSITY
+#---------------------------
+##  filename(1)      = 'HAR_VISC',
+
+#VISCAHZ |m^2/s |Harmonic Visc Coefficient (m2/s) (Zeta Pt)
+#VISCA4Z |m^4/s |Biharmonic Visc Coefficient (m4/s) (Zeta Pt)
+#VISCAHD |m^2/s |Harmonic Viscosity Coefficient (m2/s) (Div Pt)
+#VISCA4D |m^4/s |Biharmonic Viscosity Coefficient (m4/s) (Div Pt)
+#VAHZMAX |m^2/s |CFL-MAX Harm Visc Coefficient (m2/s) (Zeta Pt)
+#VA4ZMAX |m^4/s |CFL-MAX Biharm Visc Coefficient (m4/s) (Zeta Pt)
+#VAHDMAX |m^2/s |CFL-MAX Harm Visc Coefficient (m2/s) (Div Pt)
+#VA4DMAX |m^4/s |CFL-MAX Biharm Visc Coefficient (m4/s) (Div Pt)
+#VAHZMIN |m^2/s |RE-MIN Harm Visc Coefficient (m2/s) (Zeta Pt)
+#VA4ZMIN |m^4/s |RE-MIN Biharm Visc Coefficient (m4/s) (Zeta Pt)
+#VAHDMIN |m^2/s |RE-MIN Harm Visc Coefficient (m2/s) (Div Pt)
+#VA4DMIN |m^4/s |RE-MIN Biharm Visc Coefficient (m4/s) (Div Pt)
+#VAHZLTH |m^2/s |Leith Harm Visc Coefficient (m2/s) (Zeta Pt)
+#VA4ZLTH |m^4/s |Leith Biharm Visc Coefficient (m4/s) (Zeta Pt)
+#VAHDLTH |m^2/s |Leith Harm Visc Coefficient (m2/s) (Div Pt)
+#VA4DLTH |m^4/s |Leith Biharm Visc Coefficient (m4/s) (Div Pt)
+#VAHZLTHD|m^2/s |LeithD Harm Visc Coefficient (m2/s) (Zeta Pt)
+#VA4ZLTHD|m^4/s |LeithD Biharm Visc Coefficient (m4/s) (Zeta Pt)
+#VAHDLTHD|m^2/s |LeithD Harm Visc Coefficient (m2/s) (Div Pt)
+#VA4DLTHD|m^4/s |LeithD Biharm Visc Coefficient (m4/s) (Div Pt)
+#VAHZSMAG|m^2/s |Smagorinsky Harm Visc Coefficient (m2/s) (Zeta Pt)
+#VA4ZSMAG|m^4/s |Smagorinsky Biharm Visc Coeff. (m4/s) (Zeta Pt)
+#VAHDSMAG|m^2/s |Smagorinsky Harm Visc Coefficient (m2/s) (Div Pt)
+#VA4DSMAG|m^4/s |Smagorinsky Biharm Visc Coeff. (m4/s) (Div Pt)
+
+##  filename(1)      = 'HAR_VISC',
+ frequency(1)     =  86400,
+  fields(1,1)     = 'VISCAHZ ',
+  fields(2,1)     = 'VISCAHD ',
+  fields(3,1)     = 'VAHZMAX ',
+  fields(4,1)     = 'VAHZMIN ',
+  fields(5,1)     = 'VAHZLTH ',
+  fields(6,1)     = 'VAHDLTH ',
+  fields(7,1)     = 'VAHZSMAG',
+  fields(8,1)     = 'VAHDSMAG',
+
+
+##  filename(2)      = 'BIHAR_VISC',
+ frequency(2)      =  86400,
+  fields(1,2)      = 'VISCA4Z ',
+  fields(2,2)      = 'VISCA4D ',
+  fields(3,2)      = 'VA4ZMAX ',
+  fields(4,2)      = 'VA4ZMIN ',
+  fields(5,2)      = 'VA4ZLTH ',
+  fields(6,2)      = 'VA4DLTH ',
+  fields(7,2)      = 'VA4ZSMAG',
+  fields(8,2)      = 'VA4DSMAG',
+#---------------------------
+#  ELEVATION 
+#---------------------------
+  filename(3)     = 'ELEVATION',
+  fields(1,3)     = 'ETAN   ',
+ frequency(3)     =  86400,
+#---------------------------
+#  Salt 
+#---------------------------
+  filename(4)     = 'SALT',
+  fields(1,4)     = 'SALT ',
+ frequency(4)     =  86400,
+#---------------------------
+#  Theta 
+#---------------------------
+  filename(5)     = 'THETA',
+  fields(1,5)     = 'THETA',
+ frequency(5)     =  86400,
+#---------------------------
+#  Density Anomaly (=Rho-rhoConst) kg/m^3 
+#---------------------------
+  filename(6)     = 'RHO',
+  fields(1,6)     = 'RHOAnoma',
+ frequency(6)     =  86400,
+
+#---------------------------
+# Mixed-Layer Depth (>0) m
+#---------------------------
+  filename(7)     = 'MLD',
+  fields(1,7)     = 'MXLDEPTH',
+ frequency(7)     =  86400,
+#---------------------------
+#  Uvel 
+#---------------------------
+  filename(8)     = 'UVEL',
+  fields(1,8)     = 'UVEL',
+ frequency(8)     =  86400,
+#---------------------------
+#  Vvel 
+#---------------------------
+  filename(9)     = 'VVEL',
+  fields(1,9)     = 'VVEL',
+ frequency(9)     =  86400,
+#---------------------------
+# Wvel 
+#---------------------------
+  filename(10)     = 'WVEL',
+  fields(1,10)     = 'WVEL',
+ frequency(10)     =  86400,
+#---------------------------
+# Zonal Transport of Pot Temp degC.m/s  
+#---------------------------
+  filename(11)     = 'UTHMASS',
+  fields(1,11)     = 'UTHMASS',
+ frequency(11)     =  86400,
+#---------------------------
+# Meridional Transport of Pot Temp degC.m/s  
+#---------------------------
+  filename(12)     = 'VTHMASS',
+  fields(1,12)     = 'VTHMASS',
+ frequency(12)     =  86400,
+#---------------------------
+# Zonal Transport of Salt psu.m/s  
+#---------------------------
+  filename(13)     = 'USLTMASS',
+  fields(1,13)     = 'USLTMASS',
+ frequency(13)     =  86400,
+#---------------------------
+# Meridional Transport of Salt psu.m/s  
+#---------------------------
+  filename(14)     = 'VSLTMASS',
+  fields(1,14)     = 'VSLTMASS',
+ frequency(14)     =  86400,
+#---------------------------
+
+#---------------------------
+# NET HEAT FLUX  
+#---------------------------
+  filename(15)     = 'NET_HFLUX',
+ frequency(15)     =  864000,
+  fields(1,15)     = 'oceQnet',
+  fields(2,15)     = 'oceQsw',
+#---------------------------
+
+#---------------------------
+# NET SALT FLUX 
+#---------------------------
+  filename(16)     = 'NET_SFLUX',
+ frequency(16)     =  864000,
+  fields(1,16)     = 'oceFWflx',
+  fields(2,16)     = 'oceSflux',
+#---------------------------
+
+#---------------------------
+# TOTAL SALT FLUX
+#---------------------------
+  filename(17)     = 'TOT_SFLUX',
+ frequency(17)     =  864000,
+  fields(1,17)     = 'SFLUX',
+#---------------------------
+
+#---------------------------
+# TOTAL HEAT FLUX
+#---------------------------
+  filename(18)     = 'TOT_HFLUX',
+ frequency(18)     =  864000,
+  fields(1,18)     = 'TFLUX',
+#---------------------------
+
+
+#---------------------------
+# Meridional Transport of Salt psu.m/s  
+#---------------------------
+  filename(19)     = 'WINDSTRESS',
+ frequency(19)     =  864000,
+  fields(1,19)     = 'oceTAUX',
+  fields(2,19)     = 'oceTAUY',
+#---------------------------
+
+
+#---------------------------
+#  SSS 
+#---------------------------
+  filename(20)     = 'SSS',
+  fields(1,20)     = 'SALT ',
+  levels(1,20)     = 1,
+ frequency(20)     =  86400,
+#---------------------------
+#  SST 
+#---------------------------
+  filename(21)     = 'SST',
+  fields(1,21)     = 'THETA',
+  levels(1,21)     = 1,
+ frequency(21)     =  86400,
+
+#---------------------------
+# Meridional Transport of Salt psu.m/s
+#---------------------------
+  filename(22)     = 'VVELMASS',
+  fields(1,22)     = 'VVELMASS',
+ frequency(22)     =  86400,
+#---------------------------
+
+#---------------------------
+# Meridional Transport of Salt psu.m/s
+#---------------------------
+  filename(23)     = 'UVELMASS',
+  fields(1,23)     = 'UVELMASS',
+ frequency(23)     =  86400,
+#---------------------------
+
+
+
+# filename(3)      = 'diagno2d',
+#  fields(1,1)     = 'ETAN   ',
+#  fields(2,1)     = 'oceTAUX ',
+#  fields(3,1)     = 'oceTAUY ',
+#  fields(4,1)     = 'MXLDEPTH',
+#  fields(5,1)     = 'TFLUX   ',
+#  fields(6,1)     = 'SFLUX   ',
+#  fields(7,1)     = 'EXFroff ',
+# frequency(2) =  #taveFreq,
+# filename(2) = 'diagno3d',
+#  fields(1,2) = 'THETA   ',
+#  fields(2,2) = 'SALT    ',
+#  fields(3,2) = 'UVEL    ',
+#  fields(4,2) = 'VVEL    ',
+# frequency(3) = 86400,
+# filename(3) = 'dia2dday',
+#  levels(1,3) = 1,
+#  fields(1,3) = 'ETAN   ',
+#  fields(2,3) = 'oceTAUX ',
+#  fields(3,3) = 'oceTAUY ',
+#  fields(4,3) = 'MXLDEPTH',
+#  fields(5,3) = 'SFLUX   ',
+#  fields(6,3) = 'TFLUX   ',
+# frequency(4) = 86400,
+# filename(4) = 'ssst2day',
+#  levels(1,4) = 1,
+#  fields(2,4) = 'SALT   ','THETA   ',
+#----------------------------------
+# frequency(2) =  #taveFreq,
+# filename(2) = 'diagtras',
+#--Zonal Transp of Pot Temp
+#  fields(1,2) = 'VVELTH  ',
+#--Meridional Transport of Zonal Momentum (cell center)
+#  fields(2,2) = 'UV_VEL_C',
+#--Meridional Transp of Salt 
+#  fields(3,2) = 'VVELSLT ',
+#--Zonal Mass-Weight Transp of Pot Temp
+#  fields(4,2) = 'UTHMASS ',
+ /
+
+
+# Parameter for Diagnostics of per level statistics:
+#-----------------
+# for each output-stream:
+#  stat_fname(n) : prefix of the output file name (only 8.c long) for outp.stream n
+#  stat_freq(n):< 0 : write snap-shot output every |stat_freq| seconds
+#               > 0 : write time-average output every stat_freq seconds
+#  stat_phase(n)    : write at time = stat_phase + multiple of |stat_freq|
+#  stat_region(:,n) : list of "regions" (default: 1 region only=global)
+#  stat_fields(:,n) : list of diagnostics fields (8.c) (see "available_diagnostics.log"
+#                 file for the list of all available diag. in this particular config)
+#-----------------
+ &DIAG_STATIS_PARMS
+#- an example just to check the agreement with MONITOR output:
+#   stat_fields(1,1)= 'UVEL    ','VVEL    ','WVEL    ', 'THETA   ','SALT    ','oceTAUX ','oceTAUY ',
+#   stat_fname(1)= 'STATDY3D',
+#    stat_freq(1)= 86400.,
+#   stat_phase(1)= 0.,
+ /
+
+

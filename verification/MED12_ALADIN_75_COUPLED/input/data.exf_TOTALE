@@ -1,0 +1,157 @@
+# $Header: /u/gcmpack/MITgcm/pkg/exf/data.exf,v 1.3 2003/02/18 05:33:54 dimitri Exp $
+#
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML_01
+ exf_iprec         = 32,
+ exf_yftype        = 'RL',
+# windstressmax = 1.,
+# windstressmax = .2,
+ useExfCheckRange=.FALSE.,
+# readStressOnAgrid  = .TRUE.,
+ repeatperiod = 0.,
+ useExfYearlyFields = .TRUE.,
+ exf_verbose = .TRUE.
+ exf_debugLev = 4	
+ /
+# *********************
+ &EXF_NML_02
+ sfluxstartdate1   = 19580101,
+ sfluxstartdate2   = 00000,
+ sfluxperiod       = 86400.0,
+#
+ swfluxstartdate1   = 19580101,
+ swfluxstartdate2   = 00000,
+ swfluxperiod       = 86400.0,
+#
+ hfluxstartdate1   = 19580101,
+ hfluxstartdate2   = 00000,
+ hfluxperiod       = 86400.0,
+#
+ uwindstartdate1   = 19580101,
+ uwindstartdate2   = 00000,
+ uwindperiod       = 86400.0,
+#
+ vwindstartdate1   = 19580101,
+ vwindstartdate2   = 00000,
+ vwindperiod       = 86400.0,
+#
+ apressurestartdate1   = 19580101,
+ apressurestartdate2   = 00000,
+ apressureperiod       = 86400.0,
+#
+ runoffstartdate1  = 19580101,
+ runoffstartdate2  = 000000,
+# runoffperiod      = -12,
+ runoffperiod      = 86400,
+
+
+ climsststartdate1  = 19580101,
+ climsststartdate2  = 000000,
+ climsstperiod      = 86400.0,
+# climsstperiod      = -12,
+ climsstTauRelax    = 311040.,
+# climsstTauRelax    = 691200.,
+
+#
+ climsssstartdate1  = 19580101,
+ climsssstartdate2  = 000000,
+# climsssperiod      = 2628000.,
+ climsssperiod      = -12,
+ climsssTauRelax    = 432000.,
+#--> climsssTauRelax    = 1296000.,
+#
+ climsstfile        = 'SST',
+ climsssfile        = 'S_SURF.bin',
+#
+
+#- atempfile         = 'T2m',
+#- aqhfile           = 'SU',
+# swfluxfile        = 'SHORTW',
+# hfluxfile         = 'THF',
+ hfluxfile         = 'TOTHF',
+ uwindfile         = 'UVEL',
+ vwindfile         = 'VVEL',
+ sfluxfile         = 'SFLUX', 
+ apressurefile     = 'MSLP',
+ runofffile        = 'RO_BS_DAILY',
+#
+/
+# *********************
+ &EXF_NML_03
+# exf_inscal_swflux = -1.D,
+# exf_inscal_hflux = -1.D
+ /
+#
+# *********************
+ &EXF_NML_04
+# climsss_lon0    = -19.9375
+# climsss_lon_inc = 0.125
+# climsss_lat0    = 30.0625
+# climsss_lat_inc = 160*0.125
+ climsss_nlon    = 570 
+ climsss_nlat    = 264 
+ climsss_interpMethod = 0
+#
+#
+# runoff_lon0    = -19.9375
+# runoff_lon_inc = 0.125
+# runoff_lat0    = 30.0625
+# runoff_lat_inc = 160*0.125
+ runoff_nlon    = 570
+ runoff_nlat    = 264
+ runoff_interpMethod = 0
+#
+#
+ sflux_lon0    = -14.9375
+ sflux_lon_inc = 0.125
+ sflux_lat0    = 29.0625
+ sflux_lat_inc = 169*0.125
+ sflux_nlon    = 424
+ sflux_nlat    = 170
+#
+ hflux_lon0    = -14.9375
+ hflux_lon_inc = 0.125
+ hflux_lat0    = 29.0625
+ hflux_lat_inc = 169*0.125
+ hflux_nlon    = 424
+ hflux_nlat    = 170
+#
+ climsst_lon0    = -14.9375
+ climsst_lon_inc = 0.125
+ climsst_lat0    = 29.0625
+ climsst_lat_inc = 169*0.125
+ climsst_nlon    = 424
+ climsst_nlat    = 170
+#
+ swflux_lon0    = -14.9375
+ swflux_lon_inc = 0.125
+ swflux_lat0    = 29.0625
+ swflux_lat_inc = 169*0.125
+ swflux_nlon    = 424
+ swflux_nlat    = 170
+#
+ uwind_lon0    = -14.9375
+ uwind_lon_inc = 0.125
+ uwind_lat0    = 29.0625 
+ uwind_lat_inc = 169*0.125
+ uwind_nlon    = 424
+ uwind_nlat    = 170
+#
+ vwind_lon0    = -14.9375
+ vwind_lon_inc = 0.125
+ vwind_lat0    = 29.0625 
+ vwind_lat_inc = 169*0.125
+ vwind_nlon    = 424
+ vwind_nlat    = 170
+#
+ apressure_lon0    = -14.9375
+ apressure_lon_inc = 0.125
+ apressure_lat0    = 29.0625
+ apressure_lat_inc = 169*0.125
+ apressure_nlon    = 424 
+ apressure_nlat    = 170 
+
+ /
+

@@ -1,0 +1,20 @@
+# ====================
+# | Netcdf parameters |
+# ====================
+ &MNC_01
+# overall MNC ON/OFF switch
+# mnc_echo_gvtypes=.TRUE.,
+ mnc_echo_gvtypes=.FALSE.,
+# mnc_use_indir=.FALSE.,
+# mnc_use_outdir=.FALSE.,
+# mnc_outdir_str='../outdata/MNC/',
+# mnc_outdir_date=.TRUE.,
+ monitor_mnc=.FALSE.,
+# snapshot_mnc=.FALSE.,
+ timeave_mnc=.FALSE.,
+ mnc_filefreq=7200,
+## mnc_filefreq=.FALSE.,
+ pickup_read_mnc=.FALSE.,
+ pickup_write_mnc=.FALSE.,
+ /
+

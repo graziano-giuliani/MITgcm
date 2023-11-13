@@ -1,0 +1,17 @@
+# Packages
+ &PACKAGES
+ useKPP     =.FALSE.,
+# useOBCS    =.TRUE.,
+ useEXF     =.TRUE.,
+# usePP81    =.TRUE.,
+ useGGL90    =.TRUE.,
+ useRBCS    =.TRUE.,
+# useGISS  =.TRUE.,
+# useOASIS =.TRUE.,
+# useMNC   =.TRUE.,
+# useNESTING_SON     =.TRUE.,
+# useNESTING_FATHER  =.TRUE.,
+ useDIAGNOSTICS= .TRUE.,
+# useZONAL_FILT =.TRUE.,
+ /
+  
